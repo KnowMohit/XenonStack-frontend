@@ -1,4 +1,7 @@
 import React, { useEffect, useState, useMemo } from "react";
+import hosue from "../img/hosue.png";
+import house1 from "../img/house1.png";
+import house3 from "../img/house3.png";
 
 const properties = [
   {
@@ -7,7 +10,7 @@ const properties = [
     description: "A stunning beachfront property with ocean views.",
     price: 1200000,
     location: "Miami, FL",
-    image: "https://via.placeholder.com/300",
+    image: hosue, // Correctly reference the imported image
     type: "sale",
   },
   {
@@ -16,7 +19,7 @@ const properties = [
     description: "A peaceful cabin in the mountains with modern amenities.",
     price: 500000,
     location: "Aspen, CO",
-    image: "https://via.placeholder.com/300",
+    image: house1,
     type: "rent",
   },
   {
@@ -25,7 +28,7 @@ const properties = [
     description: "A spacious apartment in the heart of the city.",
     price: 900000,
     location: "New York, NY",
-    image: "https://via.placeholder.com/300",
+    image: house3,
     type: "sale",
   },
 ];

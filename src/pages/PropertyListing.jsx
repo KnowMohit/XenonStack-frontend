@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import RecommendedProperties from "./RecommendedProperties"; // Ensure this import is correct
+import "./PropertyListing.css";
 
 const PropertyListing = () => {
   const [properties, setProperties] = useState([]);
@@ -28,11 +29,11 @@ const PropertyListing = () => {
   };
 
   return (
-    <div className="container mx-auto p-6">
+    <div className="property-listing">
       <h1 className="text-3xl font-bold text-center mb-6">Properties</h1>
       <button
         onClick={handleShowRecommendations}
-        className="mb-4 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-500"
+        className="mb-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-green-500"
       >
         {showRecommendations ? "Hide Recommendations" : "Show Recommendations"}
       </button>
@@ -55,7 +56,7 @@ const PropertyListing = () => {
             <p className="text-gray-900 font-semibold">${property.price}</p>
             <p className="mt-2">{property.description}</p>
             <p className="mt-2">{property.type.toUpperCase()}</p>
-            <button className="mt-4 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-500">
+            <button className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-green-500">
               <Link to="*">View Details</Link>
             </button>
           </div>
@@ -71,7 +72,7 @@ const PropertyListing = () => {
               className="bg-yellow-100 rounded-lg shadow-md p-6"
             >
               <img
-                src={property.image}
+                src={"./img/hosue.png"}
                 alt={property.title}
                 className="w-full h-48 object-cover rounded-lg"
               />
