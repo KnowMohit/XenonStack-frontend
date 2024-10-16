@@ -1,0 +1,7 @@
+.property-listing {
+  background-image: url("../img/hosue.png"); /* Path to your background image */
+  background-size: cover;
+  background-position: center;
+  height: 100vh; /* Set the height to fill the viewport */
+  padding: 1.5rem; /* Adjust padding */
+}
