@@ -1,10 +1,42 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
+
+const properties = [
+  {
+    id: "property1",
+    title: "Beautiful Beachfront Villa",
+    description: "A stunning beachfront property with ocean views.",
+    price: 1200000,
+    location: "Miami, FL",
+    image: "https://via.placeholder.com/300",
+    type: "sale",
+  },
+  {
+    id: "property2",
+    title: "Cozy Mountain Cabin",
+    description: "A peaceful cabin in the mountains with modern amenities.",
+    price: 500000,
+    location: "Aspen, CO",
+    image: "https://via.placeholder.com/300",
+    type: "rent",
+  },
+  {
+    id: "property3",
+    title: "Luxury City Apartment",
+    description: "A spacious apartment in the heart of the city.",
+    price: 900000,
+    location: "New York, NY",
+    image: "https://via.placeholder.com/300",
+    type: "sale",
+  },
+];
 
 const RecommendedProperties = () => {
   const [recommendedProperties, setRecommendedProperties] = useState([]);
   const [currentUserId, setCurrentUserId] = useState("user1"); // Default user
-  const [userBrowsingHistory] = useState(
-    [
+
+  // Memoize userBrowsingHistory to avoid re-creation on every render
+  const userBrowsingHistory = useMemo(
+    () => [
       {
         userId: "user1",
         browsingHistory: [
@@ -27,39 +59,8 @@ const RecommendedProperties = () => {
         ],
       },
     ],
-
-    [properties, userBrowsingHistory]
-  );
-
-  const properties = [
-    {
-      id: "property1",
-      title: "Beautiful Beachfront Villa",
-      description: "A stunning beachfront property with ocean views.",
-      price: 1200000,
-      location: "Miami, FL",
-      image: "https://via.placeholder.com/300",
-      type: "sale",
-    },
-    {
-      id: "property2",
-      title: "Cozy Mountain Cabin",
-      description: "A peaceful cabin in the mountains with modern amenities.",
-      price: 500000,
-      location: "Aspen, CO",
-      image: "https://via.placeholder.com/300",
-      type: "rent",
-    },
-    {
-      id: "property3",
-      title: "Luxury City Apartment",
-      description: "A spacious apartment in the heart of the city.",
-      price: 900000,
-      location: "New York, NY",
-      image: "https://via.placeholder.com/300",
-      type: "sale",
-    },
-  ];
+    []
+  ); // Empty dependency array means it will only be created once
 
   useEffect(() => {
     // Fetch recommendations based on the current user's browsing history
@@ -76,7 +77,7 @@ const RecommendedProperties = () => {
       );
       setRecommendedProperties(recommendations);
     }
-  }, [currentUserId]);
+  }, [currentUserId, userBrowsingHistory]); // Now safe to include userBrowsingHistory
 
   const handleUserChange = (userId) => {
     setCurrentUserId(userId);
